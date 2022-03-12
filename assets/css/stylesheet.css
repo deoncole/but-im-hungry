@@ -1,0 +1,10 @@
+.hero{
+    padding: 130px 300px;
+    display: flex;
+    flex-wrap: wrap;
+    background-image: url("../images/heroimage.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 40%;
+    z-index: 9999;
+}
