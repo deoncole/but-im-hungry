@@ -57,7 +57,7 @@ var getRecipeIds = function(data){
 
 
 // TODO get whether or not user clicked no or yes and add a click event for the no and yes buttons
-//function for when the user 
+//function for when the user clicks not to having any allergies
 $(".ALLERYBUTTONNOCLASSNAME").click(function(){
     noAllergySelected = true;
 });
@@ -70,6 +70,7 @@ $(".ALLERYBUTTONYESCLASSNAME").click(function(){
     }
 });
 
+// function for when the user clicks no to having any diet restrictions
 // TODO get whether or not user clicked no or yes and add a click event for the no and yes buttons
 $(".DIETBUTTONNOCLASSNAME").click(function(){
     noDietSelected = true;
@@ -92,7 +93,7 @@ $(".CUSINEBUTTONCLASSNAME").click(function(){
 });
 
 // TODO --- create a click event for when the user clicks submit that will call the fetch function using a if statement to check the users selections
-$(".BUTTONCLASSNAME").click(function(){
+$(".SUBMITBUTTONCLASSNAME").click(function(){
     // if no allergy is selected run the API for only the diets and cusines selected
     if (noAllergySelected && !noDietSelected){
         getApiInfo(selectedDietAndCusineApiURL);
@@ -116,7 +117,14 @@ var getApiInfo = function(apiURL){
         if(response.ok){
             response.json().then(function(data){
                 getRecipeIds(data);
-            })
+                console.log(data);
+
+                // TODO --- add functionality to display the list of recipes through the for loop. Each list needs to have a data atribute associated with it to fetch the correct recipie API call (use $().attr('data-id, i))
+                for (var i = 0; i<data.results.length; i++){
+                    var recipeImg = data.results[i].image;
+                    var recipeTitle = data.results[i].title;
+                }
+            });
         }
     
     })
@@ -125,3 +133,5 @@ var getApiInfo = function(apiURL){
     });
 
 } 
+// TODO --- Remove once the pages are connected
+getApiInfo(apiURL);
