@@ -35,7 +35,17 @@ var apiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey=58d17e22
 // var recipeSummaryURL = "https://api.spoonacular.com/recipes/"+id+"/information?apiKey="+apiKey
 
 // declare an array to hold the list of id's from the displayed list of recepies
-var recipeIdList = []
+var recipeIdList = [];
+
+// TODO --- make sure to hide the elements that hold the arrays/info for the user to select the allergies or diets from
+// once the document loads hide the containers/elements that hold the allergies and diets
+$(document).ready(function() {
+    $("#CLASSOFCONTINERTHATHOLDSALLERGYARRAY").hide();
+});
+
+$(document).ready(function() {
+    $("#CLASSOFCONTINERTHATHOLDSDIETSARRAY").hide();
+});
 
 // function to create the modal for an error
 var createModal = function (error){
@@ -65,9 +75,12 @@ $(".ALLERYBUTTONNOCLASSNAME").click(function(){
 // function for when the user clicks yes to having allergies
 // TODO need to show the modal or info to select the allergies
 $(".ALLERYBUTTONYESCLASSNAME").click(function(){
+    // loop through the list of allergies and add them to the container
     for(var i=0; i<allergies.length; i++){
-
+        
     }
+    // show the list of allergies
+    $("#IDNAMEOFCONTAINERTHATHOLDSALLERGYARRAY").show();
 });
 
 // function for when the user clicks no to having any diet restrictions
@@ -79,9 +92,12 @@ $(".DIETBUTTONNOCLASSNAME").click(function(){
 // function for when the user clicks yes to having diet restrictions
 // TODO need to show the modal or info to select the allergies
 $(".DIETBUTTONYESCLASSNAME").click(function(){
+    // loop through the list of diet restrictions and add them to the container
     for(var i=0; i<diets.length; i++){
-
+        
     }
+    // show the list of diet restrictions
+    $("#IDNAMEOFCONTAINERTHATHOLDSDIETSARRAY").show();
 });
 
 // TODO --- need to show how to display the modal and for user to chose selections
