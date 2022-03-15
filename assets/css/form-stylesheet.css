@@ -8,6 +8,9 @@
     background-position: 40%;
     z-index: 9999;
 }
+.is-fullheight-100vh{
+	height: 100vh;
+}
 
 body {
 	background-color: white;
@@ -43,8 +46,4 @@ h4{background-color:#D7D7D9;
 	color: #89A621;
 	font-family: 'Sigmar One', sans sarif;}
 
-section{
-    text-align:center;
-    margin-right:5px;
-}    
 
