@@ -8,47 +8,7 @@
     background-position: 40%;
     z-index: 9999;
 }
-<<<<<<< HEAD
 
 body {
-	background-color: white;
 	font-family: 'Sigmar One', sans sarif;
 }
-
-header {
-	
-    font-family: 'Sigmar One', sans sarif;
-	color:#CC5A13;
-	letter-spacing: 20px;
-	font-size:48px;
-	text-align:center;
-}
-
-h1{
-	font-size:30px;
-	font-family: 'Sigmar One', sans sarif;
-    color: #89A621;
-}
-	
-h2{
-	font-size:40px;
-	font-family: 'Sigmar One', sans sarif;
-}
-
-
-h3{background-color:#D7D7D9;
-	font-family: 'Sigmar One', sans sarif;}
-
-
-h4{background-color:#D7D7D9;
-	color: #89A621;
-	font-family: 'Sigmar One', sans sarif;}
-
-section{
-    text-align:center;
-    float:left;
-    margin-right:5px;
-}    
-
-=======
->>>>>>> fc6d3906b3254a796a3a2125375a8e189160f767
