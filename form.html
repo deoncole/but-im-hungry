@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,23 +10,77 @@
     <link rel="stylesheet" href="./assets/css/form-stylesheet.css">
     <title>But I'm Hungry</title>
 </head>
+
 <body>
-    <!--Header Image and Layout--> 
-            <!--Main Navigation Section-->
-            <nav class="navbar is-warning is-fixed-top" role="navigation">
-                <div class="navbar-start">
-                 <a class="navbar-item" href="./index.html">But I'm Hungry</a>
+    <!--Header Image and Layout-->
+    <!--Main Navigation Section-->
+    <nav class="navbar is-warning is-fixed-top" role="navigation">
+        <div class="navbar-start">
+            <a class="navbar-item" href="./index.html">But I'm Hungry</a>
+        </div>
+
+        <a class="navbar-item" href="#intro">Introduction</a>
+        <a class="navbar-item" href="#how-to">How This Works</a>
+        <a class="navbar-item" href="#start-here">Get Started!</a>
+    </nav>
+    <!--Navigation End-->
+
+    <div class="hero">
+        <!--Styled by Stylesheet-->
+    </div>
+    <!--Header End-->
+
+    <!--Main Sections-->
+    <!--Introduction-->
+    <section id="form page">
+        <div>
+            <h1>Do You Have Allergies</h1>
+
+
+            <section id="button">
+                <div class="allergies-button"></div>
+                <div>
+                    <button class="yes-allergies-btn" id="yes-allergies-btn">Yes</button>
+
                 </div>
 
-                <a class="navbar-item" href="#intro">Introduction</a>
-                <a class="navbar-item" href="#how-to">How This Works</a>
-                <a class="navbar-item" href="#start-here">Get Started!</a>                    
-             </nav>
-            <!--Navigation End-->
+            </section>
+            <section id="button">
+                <div class="allergies-button"></div>
+                <div>
+                    <button class="no-allergies-btn" id="no-allergies-btn">No</button>
 
-            <div class="hero">
-                <!--Styled by Stylesheet-->
+                </div>
+
+            </section>
+
+            <div class="row">
+                <div class="container" id="allergies">
+                    <div class="column">
+
+                        <h3>Dairy</h3>
+                        <h3>Egg</h3>
+                        <h3>Gluten</h3>
+                        <h3>Grain</h3>
+                        <h3>Peanut</h3>
+                        <h3>Seafood</h3>
+                        <h3>Shellfish</h3>
+                        <h3>Soy</h3>
+                        <h3>Sulfite</h3>
+                        <h3>Tree Nut</h3>
+                        <h3>Wheat</h3>
+
+                    </div>
+                </div>
             </div>
+
+            <div>
+                <h1>Do You Have Any Dietary Restrictions</h1>
+                <section id="yes-button">
+                    <div class="yes-diets" id="yes-diets"></div>
+                    <div>
+                        <button class="yes-diets-btn" id="yes-diets-btn">Yes</button>
+
             <!--Header End-->
     
             <!--Main Sections-->
@@ -146,25 +201,45 @@
                                 </button>
                             </div>
 
-
-
-
-                        
-
                     </div>
-    
+
                 </section>
-                <footer class="footer has-background-warning ">
-                    <h5>Go Forth & Eat Good. </h5>
-                    <div>
-                         &copy; 2021 But I'm Hungry          
-                    </div>
-                </footer>
 
+                <section id="no-button">
+                    <div class="nodiets"></div>
+                    <div>
+                        <button class="no-diets-btn" id="no-diets-btn">No</button>
+                    </div>
+
+                </section>
+
+                <div class="row">
+                    <div class="container">
+                        <div class="column" id="diets">
+
+                            <h3>Whole 30</h3>
+                            <h3>Low FODMAP</h3>
+                            <h3>Paleo</h3>
+                            <h3>Pescaterian</h3>
+                            <h3>Vegan</h3>
+                            <h3>Vegetrian</h3>
+                            <h3>Ketogenic</h3>
+                            <h3>Gluten Free</h3>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    </section>
+    <footer>
+        <h2>Go Forth & Eat Good.</h2>
+        <div>&copy; 2021 But I'm Hungry</div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
     <script src="./assets/js/script.js"></script>
-
 </body>
+
 </html>
