@@ -40,11 +40,11 @@ var recipeIdList = [];
 // TODO --- make sure to hide the elements that hold the arrays/info for the user to select the allergies or diets from
 // once the document loads hide the containers/elements that hold the allergies and diets
 $(document).ready(function() {
-    $("#CLASSOFCONTINERTHATHOLDSALLERGYARRAY").hide();
+    $("#allergies").hide();
 });
 
 $(document).ready(function() {
-    $("#CLASSOFCONTINERTHATHOLDSDIETSARRAY").hide();
+    $("#diets").hide();
 });
 
 // function to create the modal for an error
@@ -68,62 +68,64 @@ var getRecipeIds = function(data){
 
 // TODO get whether or not user clicked no or yes and add a click event for the no and yes buttons
 //function for when the user clicks not to having any allergies
-$(".ALLERYBUTTONNOCLASSNAME").click(function(){
+$("#no-allergies-btn").click(function(){
     noAllergySelected = true;
+    $("#allergies").hide();
 });
 
 // function for when the user clicks yes to having allergies
 // TODO need to show the modal or info to select the allergies
-$(".ALLERYBUTTONYESCLASSNAME").click(function(){
+$("#yes-allergies-btn").click(function(){
     // loop through the list of allergies and add them to the container
     for(var i=0; i<allergies.length; i++){
         
     }
     // show the list of allergies
-    $("#IDNAMEOFCONTAINERTHATHOLDSALLERGYARRAY").show();
+    $("#allergies").show();
 });
 
 // function for when the user clicks no to having any diet restrictions
 // TODO get whether or not user clicked no or yes and add a click event for the no and yes buttons
-$(".DIETBUTTONNOCLASSNAME").click(function(){
+$("#no-diets-btn").click(function(){
     noDietSelected = true;
+    $("#diets").hide();
 });
 
 // function for when the user clicks yes to having diet restrictions
 // TODO need to show the modal or info to select the allergies
-$(".DIETBUTTONYESCLASSNAME").click(function(){
+$("#yes-diets-btn").click(function(){
     // loop through the list of diet restrictions and add them to the container
     for(var i=0; i<diets.length; i++){
         
     }
     // show the list of diet restrictions
-    $("#IDNAMEOFCONTAINERTHATHOLDSDIETSARRAY").show();
+    $("#diets").show();
 });
 
 // TODO --- need to show how to display the modal and for user to chose selections
 // function run when the user clicks to select the cusines
-$(".CUSINEBUTTONCLASSNAME").click(function(){
-    for(var i=0; i<cuisines.length; i++){
+// $(".CUSINEBUTTONCLASSNAME").click(function(){
+//     for(var i=0; i<cuisines.length; i++){
 
-    }
-});
+//     }
+// });
 
 // TODO --- create a click event for when the user clicks submit that will call the fetch function using a if statement to check the users selections
-$(".SUBMITBUTTONCLASSNAME").click(function(){
-    // if no allergy is selected run the API for only the diets and cusines selected
-    if (noAllergySelected && !noDietSelected){
-        getApiInfo(selectedDietAndCusineApiURL);
-    // if no diet is selected run the API for only the allergies and cusines selected    
-    } else if (noDietSelected && !noAllergySelected){
-        getApiInfo(selectedAllergyandCusineApiURL);
-    // if no allergy or diet is selected run the API for only the cusines selected
-    } else if (noAllergySelected && noDietSelected){
-        getApiInfo(selectedCusineApiURL);
-    } else {
-    // if an allergy, diet and cusine are selected run the API for all of them
-        getApiInfo(selectedAllApiURL);
-    }
-});
+// $(".SUBMITBUTTONCLASSNAME").click(function(){
+//     // if no allergy is selected run the API for only the diets and cusines selected
+//     if (noAllergySelected && !noDietSelected){
+//         getApiInfo(selectedDietAndCusineApiURL);
+//     // if no diet is selected run the API for only the allergies and cusines selected    
+//     } else if (noDietSelected && !noAllergySelected){
+//         getApiInfo(selectedAllergyandCusineApiURL);
+//     // if no allergy or diet is selected run the API for only the cusines selected
+//     } else if (noAllergySelected && noDietSelected){
+//         getApiInfo(selectedCusineApiURL);
+//     } else {
+//     // if an allergy, diet and cusine are selected run the API for all of them
+//         getApiInfo(selectedAllApiURL);
+//     }
+// });
 
 
 // function to fetch the data from the api
