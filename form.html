@@ -29,28 +29,15 @@
             <!--Header End-->
     
             <!--Main Sections-->
-                <!--Introduction-->
-                <section id="form page">
-                    <div>
+                <!--Main Form Page-->
+                <section id="form-page">
+                    <!--Div For Allergy Selection-->
+                    <div id="allergies">
                         <h1>Do You Have Allergies</h1>
-
-
-                        <section id="button">
-                            <div class="Allergies Button"></div>
-                             <div>
-                                 <button class="Yes Allergies">Yes</button>
+                        <!--buttons to confirm if user has any allergies-->
+                        <button class="button is-success Yes-Allergies">Yes</button>
+                        <button class="button is-danger No-Allergies">No</button>
         
-                            </div>
-            
-                        </section>
-                        <section id="button">
-                            <div class="Allergies Button"></div>
-                             <div>
-                                 <button class="No Allergies">No</button>
-        
-                            </div>
-            
-                        </section>
 
                         <div class="row">
                             <div class="container">
@@ -72,25 +59,12 @@
                             </div>
                         </div>
                                 
-
-                        <div>
+                        <!--Div For diet restriction/selections-->
+                        <div id="dietary">
                             <h1>Do You Have Any Dietary Restrictions</h1>
-                            <section id="yes button">
-                                <div class="Yes Allergies"></div>
-                                 <div>
-                                     <button class="No Allergies">Yes</button>
-            
-                                </div>
-                
-                            </section>
-                            <section id="no button">
-                                <div class="No Allergies"></div>
-                                 <div>
-                                     <button class="No Allergies">No</button>
-            
-                                </div>
-                
-                            </section>
+                            <!--BUtton to confirm if user has any diet restrictions-->
+                            <button class="button is-success yes-diet">Yes</button>
+                            <button class="button is-danger no-diet">No</button>
     
                             <div class="row">
                                 <div class="container">
@@ -165,7 +139,12 @@
                                 </div>
                             </div>
                                     
+                            <div>
+                                <button class="button is-warning is-light is-link " id="lets-eat">
+                                    Submit!
 
+                                </button>
+                            </div>
 
 
 
@@ -175,14 +154,17 @@
                     </div>
     
                 </section>
-    
-                
-    
-            <footer>
-                <h2>Go Forth & Eat Good.</h2>
-                <div>&copy; 2021 But I'm Hungry</div>
-            </footer>
-        <script src="./assets/js/script.js"></script>
+                <footer class="footer has-background-warning ">
+                    <h5>Go Forth & Eat Good. </h5>
+                    <div>
+                         &copy; 2021 But I'm Hungry          
+                    </div>
+                </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 
 </body>
 </html>
