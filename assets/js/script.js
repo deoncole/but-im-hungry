@@ -12,7 +12,7 @@ var cuisines = ["American","African","British","Cajun","Caribbean","Chinese","Ea
 // declare an array to hold the allergies
 var diets = ["Gluten Free","Ketogenic","Vegetarian","Vegan","Pescetarian","Paleo"];
 // declare an array to hold the diet restrictions
-var allergies = ["Diary","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"];
+var allergies = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"];
 
 // declare booleans to hold if the user chose any allergies or a diet
 var noAllergySelected = false;
@@ -37,7 +37,6 @@ var apiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey=58d17e22
 // declare an array to hold the list of id's from the displayed list of recepies
 var recipeIdList = [];
 
-// TODO --- make sure to hide the elements that hold the arrays/info for the user to select the allergies or diets from
 // once the document loads hide the containers/elements that hold the allergies and diets
 $(document).ready(function() {
     $("#allergies").hide();
@@ -63,69 +62,107 @@ var getRecipeIds = function(data){
     for (var i=0; i<data.results.length; i++){
         recipeIdList.push(data.results[i].id);
     }
-}
+};
 
-
-// TODO get whether or not user clicked no or yes and add a click event for the no and yes buttons
-//function for when the user clicks not to having any allergies
+//function for when the user clicks no to having any allergies, reset the array and background color of the div
 $("#no-allergies-btn").click(function(){
     noAllergySelected = true;
+    allergies = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"];
     $("#allergies").hide();
 });
 
 // function for when the user clicks yes to having allergies
-// TODO need to show the modal or info to select the allergies
 $("#yes-allergies-btn").click(function(){
-    // loop through the list of allergies and add them to the container
-    for(var i=0; i<allergies.length; i++){
-        
-    }
     // show the list of allergies
     $("#allergies").show();
 });
 
-// function for when the user clicks no to having any diet restrictions
-// TODO get whether or not user clicked no or yes and add a click event for the no and yes buttons
+// function for when the user clicks no to having any diet restrictions, reset the array and the background color of the div
 $("#no-diets-btn").click(function(){
     noDietSelected = true;
+    diets = ["Gluten Free","Ketogenic","Vegetarian","Vegan","Pescetarian","Paleo"];
     $("#diets").hide();
 });
 
 // function for when the user clicks yes to having diet restrictions
-// TODO need to show the modal or info to select the allergies
 $("#yes-diets-btn").click(function(){
-    // loop through the list of diet restrictions and add them to the container
-    for(var i=0; i<diets.length; i++){
-        
-    }
     // show the list of diet restrictions
     $("#diets").show();
 });
 
+$("#allergies").click(function(event){
+    // variable to hold the text of the allergy clicked
+    var allergy = event.target.innerText;
+    // variables used to set the background color of the item clicked
+    var yellowColor = "rgb(255, 255, 0)";
+    var transparentBg = "rgb(215, 215, 217)"
+    // if statement to check if hte user has clicked on the item or not. if the background color is transparent chenge it to let the user know their selection & remove from the array. If it's already selected
+    if ($(event.target).css("background-color") === transparentBg){
+        $(event.target).css("background-color", "yellow");
+        allergies = jQuery.grep(allergies, function(value) {
+            return value != allergy;
+          });    
+    } else if ($(event.target).css("background-color") === yellowColor){
+        // check if the item is already in the array, if so return. if not change the background color to transparent and add it to the array
+        if (jQuery.inArray(allergy, allergies)!= -1){
+            console.log(allergies);
+            return;
+        } else {
+            $(event.target).css("background-color", "");
+            allergies.push(allergy);
+        };
+    }
+});
+
+$("#diets").click(function(event){
+    // variable to hold the text of the diet clicked item
+    var dietRestriction = event.target.innerText;
+    // variables used to set the background color of the item clicked
+    var yellowColor = "rgb(255, 255, 0)";
+    var transparentBg = "rgb(215, 215, 217)"
+    // if statement to check if hte user has clicked on the item or not. if the background color is transparent chenge it to let the user know their selection & remove from the array. If it's already selected
+    if ($(event.target).css("background-color") === transparentBg){
+        $(event.target).css("background-color", "yellow");
+        diets = jQuery.grep(diets, function(value) {
+            return value != dietRestriction;
+          });    
+    } else if ($(event.target).css("background-color") === yellowColor){
+        // check if the item is already in the array, if so return. if not change the background color to transparent and add it to the array
+        if (jQuery.inArray(dietRestriction, diets)!= -1){
+            console.log(allergies);
+            return;
+        } else {
+            $(event.target).css("background-color", "");
+            diets.push(dietRestriction);
+        };
+    }
+});
+
 // TODO --- need to show how to display the modal and for user to chose selections
 // function run when the user clicks to select the cusines
-// $(".CUSINEBUTTONCLASSNAME").click(function(){
+// $("#.CUSINEBUTTONCLASSNAME").click(function(){
 //     for(var i=0; i<cuisines.length; i++){
 
 //     }
 // });
 
 // TODO --- create a click event for when the user clicks submit that will call the fetch function using a if statement to check the users selections
-// $(".SUBMITBUTTONCLASSNAME").click(function(){
-//     // if no allergy is selected run the API for only the diets and cusines selected
-//     if (noAllergySelected && !noDietSelected){
-//         getApiInfo(selectedDietAndCusineApiURL);
-//     // if no diet is selected run the API for only the allergies and cusines selected    
-//     } else if (noDietSelected && !noAllergySelected){
-//         getApiInfo(selectedAllergyandCusineApiURL);
-//     // if no allergy or diet is selected run the API for only the cusines selected
-//     } else if (noAllergySelected && noDietSelected){
-//         getApiInfo(selectedCusineApiURL);
-//     } else {
-//     // if an allergy, diet and cusine are selected run the API for all of them
-//         getApiInfo(selectedAllApiURL);
-//     }
-// });
+$("#lets-eat").click(function(){
+    console.log("ready to eat");
+    // // if no allergy is selected run the API for only the diets and cusines selected
+    // if (noAllergySelected && !noDietSelected){
+    //     getApiInfo(selectedDietAndCusineApiURL);
+    // // if no diet is selected run the API for only the allergies and cusines selected    
+    // } else if (noDietSelected && !noAllergySelected){
+    //     getApiInfo(selectedAllergyandCusineApiURL);
+    // // if no allergy or diet is selected run the API for only the cusines selected
+    // } else if (noAllergySelected && noDietSelected){
+    //     getApiInfo(selectedCusineApiURL);
+    // } else {
+    // // if an allergy, diet and cusine are selected run the API for all of them
+    //     getApiInfo(selectedAllApiURL);
+    // }
+});
 
 
 // function to fetch the data from the api
