@@ -98,7 +98,7 @@ $("#yes-diets-btn").click(function(){
 
 $("#allergies").click(function(event){
     // variable to hold the text of the allergy clicked
-    var allergy = event.target.innerText;
+    var chosenAllergy = event.target.innerText;
     // variables used to set the background color of the item clicked
     var yellowColor = "rgb(255, 255, 0)";
     var transparentBg = "rgb(215, 215, 217)"
@@ -106,16 +106,40 @@ $("#allergies").click(function(event){
     if ($(event.target).css("background-color") === transparentBg){
         $(event.target).css("background-color", "yellow");
         allergies = jQuery.grep(allergies, function(value) {
-            return value != allergy;
+            return value != chosenAllergy;
           });    
     } else if ($(event.target).css("background-color") === yellowColor){
         // check if the item is already in the array, if so return. if not change the background color to transparent and add it to the array
-        if (jQuery.inArray(allergy, allergies)!= -1){
+        if (jQuery.inArray(chosenAllergy, allergies)!= -1){
             console.log(allergies);
             return;
         } else {
             $(event.target).css("background-color", "");
-            allergies.push(allergy);
+            allergies.push(chosenAllergy);
+        };
+    }
+});
+
+// function for when the user clicks on one of the cusines they don't want
+$("#cusines-section").click(function (event) {
+    // variable to hold the text of the allergy clicked
+    var chosenCuisine = event.target.innerText;
+    // variables used to set the background color of the item clicked
+    var yellowColor = "rgb(255, 255, 0)";
+    var transparentBg = "rgb(215, 215, 217)"
+    // if statement to check if hte user has clicked on the item or not. if the background color is transparent chenge it to let the user know their selection & remove from the array. If it's already selected
+    if ($(event.target).css("background-color") === transparentBg) {
+        $(event.target).css("background-color", "yellow");
+        cuisines = jQuery.grep(cuisines, function (value) {
+            return value != chosenCuisine;
+        });
+    } else if ($(event.target).css("background-color") === yellowColor) {
+        // check if the item is already in the array, if so return. if not change the background color to transparent and add it to the array
+        if (jQuery.inArray(chosenCuisine, cuisines) != -1) {
+            return;
+        } else {
+            $(event.target).css("background-color", "");
+            cuisines.push(chosenCuisine);
         };
     }
 });
