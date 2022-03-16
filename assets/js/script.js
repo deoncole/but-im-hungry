@@ -96,6 +96,7 @@ $("#yes-diets-btn").click(function(){
     $("#diets").show();
 });
 
+// function for when the user clicks within the allergy section
 $("#allergies").click(function(event){
     // variable to hold the text of the allergy clicked
     var chosenAllergy = event.target.innerText;
@@ -116,6 +117,31 @@ $("#allergies").click(function(event){
         } else {
             $(event.target).css("background-color", "");
             allergies.push(chosenAllergy);
+        };
+    }
+});
+
+//function for when the user clicks within the diet restriction section
+$("#diets").click(function(event){
+    // variable to hold the text of the diet clicked item
+    var dietRestriction = event.target.innerText;
+    // variables used to set the background color of the item clicked
+    var yellowColor = "rgb(255, 255, 0)";
+    var transparentBg = "rgb(215, 215, 217)"
+    // if statement to check if hte user has clicked on the item or not. if the background color is transparent chenge it to let the user know their selection & remove from the array. If it's already selected
+    if ($(event.target).css("background-color") === transparentBg){
+        $(event.target).css("background-color", "yellow");
+        diets = jQuery.grep(diets, function(value) {
+            return value != dietRestriction;
+          });    
+    } else if ($(event.target).css("background-color") === yellowColor){
+        // check if the item is already in the array, if so return. if not change the background color to transparent and add it to the array
+        if (jQuery.inArray(dietRestriction, diets)!= -1){
+            console.log(allergies);
+            return;
+        } else {
+            $(event.target).css("background-color", "");
+            diets.push(dietRestriction);
         };
     }
 });
@@ -144,29 +170,6 @@ $("#cusines-section").click(function (event) {
     }
 });
 
-$("#diets").click(function(event){
-    // variable to hold the text of the diet clicked item
-    var dietRestriction = event.target.innerText;
-    // variables used to set the background color of the item clicked
-    var yellowColor = "rgb(255, 255, 0)";
-    var transparentBg = "rgb(215, 215, 217)"
-    // if statement to check if hte user has clicked on the item or not. if the background color is transparent chenge it to let the user know their selection & remove from the array. If it's already selected
-    if ($(event.target).css("background-color") === transparentBg){
-        $(event.target).css("background-color", "yellow");
-        diets = jQuery.grep(diets, function(value) {
-            return value != dietRestriction;
-          });    
-    } else if ($(event.target).css("background-color") === yellowColor){
-        // check if the item is already in the array, if so return. if not change the background color to transparent and add it to the array
-        if (jQuery.inArray(dietRestriction, diets)!= -1){
-            console.log(allergies);
-            return;
-        } else {
-            $(event.target).css("background-color", "");
-            diets.push(dietRestriction);
-        };
-    }
-});
 
 // TODO --- need to show how to display the modal and for user to chose selections
 // function run when the user clicks to select the cusines
