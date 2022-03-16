@@ -68,6 +68,9 @@ var getRecipeIds = function(data){
 $("#no-allergies-btn").click(function(){
     noAllergySelected = true;
     allergies = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"];
+    $('#allergies').children().each(function () {
+        $("#allergies h3").css("background-color", "");
+    });
     $("#allergies").hide();
 });
 
@@ -81,6 +84,9 @@ $("#yes-allergies-btn").click(function(){
 $("#no-diets-btn").click(function(){
     noDietSelected = true;
     diets = ["Gluten Free","Ketogenic","Vegetarian","Vegan","Pescetarian","Paleo"];
+    $('#diets').children().each(function () {
+        $("#diets h3").css("background-color", "");
+    });
     $("#diets").hide();
 });
 
