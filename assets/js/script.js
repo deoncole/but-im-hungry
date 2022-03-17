@@ -38,11 +38,11 @@ var selectedAllApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiK
 var recipeIdList = [];
 
 // once the document loads hide the containers/elements that hold the allergies and diets
-$(document).ready(function() {
+$(document).ready(function () {
     $("#allergies").hide();
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     $("#diets").hide();
 });
 
@@ -61,6 +61,7 @@ $(".modal-close").click(function(){
 var getRecipeIds = function(data){
     for (var i=0; i<data.results.length; i++){
         recipeIdList.push(data.results[i].id);
+        localStorage.setItem("recipeList", JSON.stringify(recipeIdList));
     }
 };
 
