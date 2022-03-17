@@ -11,14 +11,16 @@ $(document).ready(function () {
         
         for (var i=0; i<recipeIdResults.length; i++){
             var recipeSummaryURL = "https://api.spoonacular.com/recipes/"+recipeIdResults[i]+"/information?apiKey="+apiKey
-            console.log(recipeSummaryURL);
             getApiInfo(recipeSummaryURL);
         }
 });
 
-var saveRecipe = function(){
-    console.log("ready to save");
-}
+
+$("#my-results").click(function(event){
+    console.log(event.target);
+    var savedId = event.target.getAttribute('data-id');
+    console.log(savedId);
+})
 
 // function to fetch the data from the api
 var getApiInfo = function(apiURL){
@@ -30,7 +32,7 @@ var getApiInfo = function(apiURL){
 
                 var cardBodyEl = document.getElementById("my-results");
                 var cardContainerEl = document.createElement("div");
-                cardContainerEl.classList.add("column", "is-4")
+                cardContainerEl.classList.add("column", "is-4", "cardId")
 
                 var cardEl = document.createElement("div");
                 cardEl.className = "card";
@@ -38,8 +40,6 @@ var getApiInfo = function(apiURL){
                 cardImg.className = "is-rounded";
                 cardImg.src = data.image;
 
-                var cardContentEl = document.createElement("div");
-                cardContentEl.className = "card-content";
                 var cardTextEl = document.createElement("div");
                 cardTextEl.textContent = data.title;
 
@@ -47,12 +47,12 @@ var getApiInfo = function(apiURL){
                 footerEl.className = "card-footer";
                 var saveBtnEl = document.createElement('a');
                 saveBtnEl.setAttribute('onclick', 'saveRecipe()');
-                saveBtnEl.setAttribute('data-index', data.id);
+                saveBtnEl.setAttribute('data-id', data.id);
+                
                 var viewBtnEl = document.createElement('a');
                 viewBtnEl.href = data.spoonacularSourceUrl;
                 viewBtnEl.target = "_blank";
-                saveBtnEl.className = "card-footer-item";
-                saveBtnEl.className = "card-footer-item";
+                saveBtnEl.classList.add("card-footer-item","saveBtn");
                 viewBtnEl.className = "card-footer-item";
                 var saveText = document.createTextNode("Save");
                 var delText = document.createTextNode("View");
@@ -64,7 +64,6 @@ var getApiInfo = function(apiURL){
                 cardEl.appendChild(cardImg);
                 cardContainerEl.appendChild(cardTextEl);
                 cardContainerEl.appendChild(cardImg);
-                cardContainerEl.appendChild(cardContentEl);
                 cardContainerEl.appendChild(footerEl);
                 cardBodyEl.appendChild(cardContainerEl);
 
