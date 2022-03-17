@@ -20,16 +20,16 @@ var noDietSelected = false;
 
 
 // api URL to get just the allergies and cuisines
-var selectedAllergyandCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&number=30";
+var selectedAllergyandCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&number=15";
 
 // api URL to get just the diet and cuisines
-var selectedDietAndCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&diet="+diets+"&number=30";
+var selectedDietAndCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&diet="+diets+"&number=15";
 
 // api URL to get just the cuisines
 var selectedCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines;
 
 // api URL to get the selected cuisine, allergies, and diet
-var selectedAllApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&diet="+diets+"&number=30";
+var selectedAllApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&diet="+diets+"&number=15";
 
 // api URL to get the summary of the recipe chosen by the user
 // var recipeSummaryURL = "https://api.spoonacular.com/recipes/"+id+"/information?apiKey="+apiKey
@@ -222,5 +222,3 @@ var getApiInfo = function(apiURL){
     });
 
 } 
-// TODO --- Remove once the pages are connected
-// getApiInfo(apiURL);
