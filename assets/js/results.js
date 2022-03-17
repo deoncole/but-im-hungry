@@ -1,4 +1,13 @@
+// arrays to hold the results from local storage and to put the user saved ids in local storage
 var recipeIdResults = [];
+var savedRecipeIDs = [];
+
+var myRecipesList = [];
+var mySavedRecipes = {
+    id: "",
+    image: "",
+    recipeURL: ""
+};
 
 var apiKey = "58d17e2297ca4c9992ddc856f9e1ce2f";
 
@@ -15,12 +24,33 @@ $(document).ready(function () {
         }
 });
 
+// function to check if local storage is empty or not
+var checkLocalStorage = function(recipeId){
+    if (localStorage.getItem("recipeIdList")===null){
+        savedRecipeIDs.push(recipeId)
+        localStorage.setItem("recipeIdList", JSON.stringify(savedRecipeIDs));
+    } else if (localStorage.getItem("recipeIdList") != null){
+        var idList = localStorage.getItem("recipeIdList");
+        savedRecipeIDs = JSON.parse(idList);
+        savedRecipeIDs.push(recipeId);
+        localStorage.setItem("recipeIdList", JSON.stringify(savedRecipeIDs));
+    }
+};
 
+// onclick to save the selected recipie id
 $("#my-results").click(function(event){
-    console.log(event.target);
     var savedId = event.target.getAttribute('data-id');
-    console.log(savedId);
-})
+    // call the method to check local storage
+    checkLocalStorage(savedId);
+});
+
+var showMySavedRecipes = function (savedId){
+    for (var i = 0; i<myRecipesList.length; i++){
+        if (savedId === myRecipesList[i].id){
+            // TODO --- add image and link to the my list div.
+        }
+    }
+}
 
 // function to fetch the data from the api
 var getApiInfo = function(apiURL){
@@ -28,7 +58,13 @@ var getApiInfo = function(apiURL){
     fetch(apiURL).then(function(response){
         if(response.ok){
             response.json().then(function(data){
-                console.log(data);
+                // console.log(data);
+
+                mySavedRecipes.id = data.id;
+                mySavedRecipes.image = data.image;
+                mySavedRecipes.recipeURL = data.spoonacularSourceUrl;
+
+                myRecipesList.push(mySavedRecipes);
 
                 var cardBodyEl = document.getElementById("my-results");
                 var cardContainerEl = document.createElement("div");
