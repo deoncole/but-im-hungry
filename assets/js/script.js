@@ -18,18 +18,18 @@ var allergies = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","She
 var noAllergySelected = false;
 var noDietSelected = false;
 
-var apiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey=58d17e2297ca4c9992ddc856f9e1ce2f&cuisine=American,Italian,Chinese&intolerances=dairy&diet=vegetarian";
+
 // api URL to get just the allergies and cuisines
-// var selectedAllergyandCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&number=30";
+var selectedAllergyandCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&number=30";
 
 // api URL to get just the diet and cuisines
-// var selectedDietAndCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&diet="+diets+"&number=30";
+var selectedDietAndCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&diet="+diets+"&number=30";
 
 // api URL to get just the cuisines
-// var selectedCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines;
+var selectedCusineApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines;
 
 // api URL to get the selected cuisine, allergies, and diet
-// var selectedAllApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&diet="+diets+"&number=30";
+var selectedAllApiURL = "https://api.spoonacular.com/recipes/complexSearch/?apiKey="+apiKey+"&cuisine="+cuisines+"&intolerances="+allergies+"&diet="+diets+"&number=30";
 
 // api URL to get the summary of the recipe chosen by the user
 // var recipeSummaryURL = "https://api.spoonacular.com/recipes/"+id+"/information?apiKey="+apiKey
@@ -64,13 +64,14 @@ var getRecipeIds = function(data){
     }
 };
 
-//function for when the user clicks no to having any allergies, reset the array and background color of the div
+//function for when the user clicks no to having any allergies, reset the array, and background color of the div
 $("#no-allergies-btn").click(function(){
     noAllergySelected = true;
     allergies = ["Dairy","Egg","Gluten","Grain","Peanut","Seafood","Sesame","Shellfish","Soy","Sulfite","Tree Nut","Wheat"];
     $('#allergies').children().each(function () {
         $("#allergies h3").css("background-color", "");
     });
+    noAllergySelected = false;
     $("#allergies").hide();
 });
 
@@ -80,7 +81,7 @@ $("#yes-allergies-btn").click(function(){
     $("#allergies").show();
 });
 
-// function for when the user clicks no to having any diet restrictions, reset the array and the background color of the div
+// function for when the user clicks no to having any diet restrictions, reset the array, and the background color of the div
 $("#no-diets-btn").click(function(){
     noDietSelected = true;
     diets = ["Gluten Free","Ketogenic","Vegetarian","Vegan","Pescetarian","Paleo"];
@@ -182,19 +183,19 @@ $("#cusines-section").click(function (event) {
 // TODO --- create a click event for when the user clicks submit that will call the fetch function using a if statement to check the users selections
 $("#lets-eat").click(function(){
     console.log("ready to eat");
-    // // if no allergy is selected run the API for only the diets and cusines selected
-    // if (noAllergySelected && !noDietSelected){
-    //     getApiInfo(selectedDietAndCusineApiURL);
-    // // if no diet is selected run the API for only the allergies and cusines selected    
-    // } else if (noDietSelected && !noAllergySelected){
-    //     getApiInfo(selectedAllergyandCusineApiURL);
-    // // if no allergy or diet is selected run the API for only the cusines selected
-    // } else if (noAllergySelected && noDietSelected){
-    //     getApiInfo(selectedCusineApiURL);
-    // } else {
-    // // if an allergy, diet and cusine are selected run the API for all of them
-    //     getApiInfo(selectedAllApiURL);
-    // }
+    // if no allergy is selected run the API for only the diets and cusines selected
+    if (noAllergySelected && !noDietSelected){
+        getApiInfo(selectedDietAndCusineApiURL);
+    // if no diet is selected run the API for only the allergies and cusines selected    
+    } else if (noDietSelected && !noAllergySelected){
+        getApiInfo(selectedAllergyandCusineApiURL);
+    // if no allergy or diet is selected run the API for only the cusines selected
+    } else if (noAllergySelected && noDietSelected){
+        getApiInfo(selectedCusineApiURL);
+    } else {
+    // if an allergy, diet and cusine are selected run the API for all of them
+        getApiInfo(selectedAllApiURL);
+    }
 });
 
 
@@ -222,4 +223,4 @@ var getApiInfo = function(apiURL){
 
 } 
 // TODO --- Remove once the pages are connected
-getApiInfo(apiURL);
+// getApiInfo(apiURL);
