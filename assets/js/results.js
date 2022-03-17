@@ -8,7 +8,6 @@ var apiKey = "58d17e2297ca4c9992ddc856f9e1ce2f";
 $(document).ready(function () {
     var idList = localStorage.getItem("recipeList");
         recipeIdResults = JSON.parse(idList);
-        console.log(recipeIdResults);
         
         for (var i=0; i<recipeIdResults.length; i++){
             var recipeSummaryURL = "https://api.spoonacular.com/recipes/"+recipeIdResults[i]+"/information?apiKey="+apiKey
@@ -17,6 +16,9 @@ $(document).ready(function () {
         }
 });
 
+var saveRecipe = function(){
+    console.log("ready to save");
+}
 
 // function to fetch the data from the api
 var getApiInfo = function(apiURL){
@@ -28,11 +30,12 @@ var getApiInfo = function(apiURL){
 
                 var cardBodyEl = document.getElementById("my-results");
                 var cardContainerEl = document.createElement("div");
-                cardContainerEl.className = "column"
+                cardContainerEl.classList.add("column", "is-4")
 
                 var cardEl = document.createElement("div");
                 cardEl.className = "card";
                 var cardImg = document.createElement("img");
+                cardImg.className = "is-rounded";
                 cardImg.src = data.image;
 
                 var cardContentEl = document.createElement("div");
@@ -43,15 +46,20 @@ var getApiInfo = function(apiURL){
                 var footerEl = document.createElement("footer");
                 footerEl.className = "card-footer";
                 var saveBtnEl = document.createElement('a');
-                var delBtnEl = document.createElement('a');
-                saveBtnEl.className = "card-footer-item"
-                delBtnEl.className = "card-footer-item"
+                saveBtnEl.setAttribute('onclick', 'saveRecipe()');
+                saveBtnEl.setAttribute('data-index', data.id);
+                var viewBtnEl = document.createElement('a');
+                viewBtnEl.href = data.spoonacularSourceUrl;
+                viewBtnEl.target = "_blank";
+                saveBtnEl.className = "card-footer-item";
+                saveBtnEl.className = "card-footer-item";
+                viewBtnEl.className = "card-footer-item";
                 var saveText = document.createTextNode("Save");
                 var delText = document.createTextNode("View");
                 saveBtnEl.appendChild(saveText);
-                delBtnEl.appendChild(delText);
+                viewBtnEl.appendChild(delText);
                 footerEl.append(saveBtnEl);
-                footerEl.append(delBtnEl);
+                footerEl.append(viewBtnEl);
 
                 cardEl.appendChild(cardImg);
                 cardContainerEl.appendChild(cardTextEl);
