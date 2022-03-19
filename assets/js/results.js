@@ -1,7 +1,7 @@
 // arrays to hold the results from local storage and to put the user saved ids in local storage
 var recipeIdResults = [];
 var savedRecipeIDs = [];
-
+var cookbook = [];
 // array to hold the list of saved recipies
 var myRecipesList = [];
 
@@ -16,7 +16,18 @@ $(document).ready(function () {
             var recipeSummaryURL = "https://api.spoonacular.com/recipes/"+recipeIdResults[i]+"/information?apiKey="+apiKey
             getApiInfo(recipeSummaryURL);
         }
+        //Local Storage Recipie Details to display them in the my recipies section.
+        // if (localStorage.getItem("cookbook")===null){
+        //     return;
+        // } else if (localStorage.getItem("cookbook") != null){
+        //     var idList = localStorage.getItem("cookbook");
+        //     cookbook = JSON.parse(idList);
+        //     cookbook.push(cookbook);
+        //     localStorage.setItem("cookbook", JSON.stringify(cookbook));
+        // }
 });
+
+
 
 // function to check if local storage is empty or not
 var checkLocalStorage = function(recipeId){
@@ -81,6 +92,13 @@ var showMySavedRecipes = function (savedId){
                 cContainerEl.appendChild(cImg);
                 cContainerEl.appendChild(footerEl);
                 cBodyEl.appendChild(cContainerEl);
+
+
+                //Used to store data for info for recipes to local stoage to pull for a later time
+                var saving = new mySavedRecipes(myRecipesList[i].id, myRecipesList[i].image, myRecipesList[i].url, myRecipesList[i].title);
+                cookbook.push(saving);
+                localStorage.setItem("cookbook",JSON.stringify(cookbook));
+                console.log(cookbook)
 
         } else {
             (console.log("we have a problem"));
