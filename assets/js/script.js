@@ -72,7 +72,6 @@ $("#no-allergies-btn").click(function(){
     $('#allergies').children().each(function () {
         $("#allergies h3").css("background-color", "");
     });
-    noAllergySelected = false;
     $("#allergies").hide();
 });
 
@@ -187,15 +186,22 @@ $("#lets-eat").click(function(){
     // if no allergy is selected run the API for only the diets and cusines selected
     if (noAllergySelected && !noDietSelected){
         getApiInfo(selectedDietAndCusineApiURL);
+        console.log("true allergies");
+        console.log(noAllergySelected, noDietSelected)
     // if no diet is selected run the API for only the allergies and cusines selected    
     } else if (noDietSelected && !noAllergySelected){
         getApiInfo(selectedAllergyandCusineApiURL);
+        console.log("true diets");
+        console.log(noDietSelected, noAllergySelected);
     // if no allergy or diet is selected run the API for only the cusines selected
-    } else if (noAllergySelected && noDietSelected){
+    } else if (!noAllergySelected && !noDietSelected){
         getApiInfo(selectedCusineApiURL);
-    } else {
+        console.log("both are false");
+        console.log(noAllergySelected, noDietSelected);
+    } else if (noAllergySelected & noDietSelected){
     // if an allergy, diet and cusine are selected run the API for all of them
         getApiInfo(selectedAllApiURL);
+        console.log("get them all")
     }
 });
 
