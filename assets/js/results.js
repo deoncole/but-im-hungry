@@ -33,10 +33,11 @@ var checkLocalStorage = function(recipeId){
 
   // create a class to hold the objects needed
   class mySavedRecipes {
-    constructor(id, image, url) {
+    constructor(id, image, url,title) {
         this.id = id;
         this.image = image;
         this.url = url;
+        this.title = title;
     }
 }
 
@@ -47,37 +48,39 @@ var showMySavedRecipes = function (savedId){
     // check to see if the recipe id matches with the clicked id from the card. If so  present it to the user in the my recipe section
     for (var i = 0; i<myRecipesList.length; i++){
         console.log(myRecipesList[i].id);
-        if (myRecipesList[i].id === savedId){
+        if (myRecipesList[i].id == savedId){
             console.log("it's a match");
             // TODO --- add image and link to the my list div.
-                // var cBodyEl = document.getElementById("my-recipes");
-                // var cContainerEl = document.createElement("div");
-                // cContainerEl.classList.add("column", "is-4")
+                var cBodyEl = document.getElementById("my-recipes");
+                var cContainerEl = document.createElement("div");
+                cContainerEl.classList.add("column", "is-4")
 
-                // var cardRecipeEl = document.createElement("div");
-                // cardRecipeEl.className = "card";
-                // var cImg = document.createElement("img");
-                // cImg.className = "is-rounded";
-                // cImg.src = myRecipesList[i].image;
+                var cardRecipeEl = document.createElement("div");
+                cardRecipeEl.className = "card";
 
-                // var footerEl = document.createElement("footer");
-                // footerEl.className = "card-footer";
+                var cImg = document.createElement("img");
+                cImg.className = "is-rounded";
+                cImg.src = myRecipesList[i].image;
 
-                // var viewBtnEl = document.createElement('a');
-                // viewBtnEl.href = myRecipesList[i].url;
-                // viewBtnEl.target = "_blank";
-                // saveBtnEl.classList.add("card-footer-item");
-                // viewBtnEl.className = "card-footer-item";
-                // var delText = document.createTextNode("View");
-                // viewBtnEl.appendChild(delText);
-                // footerEl.append(saveBtnEl);
-                // footerEl.append(viewBtnEl);
+                var cTextEl = document.createElement("div");
+                cTextEl.textContent = myRecipesList[i].title;
 
-                // cardRecipeEl.appendChild(cImg);
-                // cContainerEl.appendChild(cTextEl);
-                // cContainerEl.appendChild(cImg);
-                // cContainerEl.appendChild(footerEl);
-                // cBodyEl.appendChild(cContainerEl);
+                var footerEl = document.createElement("footer");
+                footerEl.className = "card-footer";
+
+                var viewBtnEl = document.createElement('a');
+                viewBtnEl.href = myRecipesList[i].url;
+                viewBtnEl.target = "_blank";
+                viewBtnEl.className = "card-footer-item";
+                var delText = document.createTextNode("View");
+                viewBtnEl.appendChild(delText);
+                footerEl.append(viewBtnEl);
+
+                cardRecipeEl.appendChild(cImg);
+                cContainerEl.appendChild(cTextEl);
+                cContainerEl.appendChild(cImg);
+                cContainerEl.appendChild(footerEl);
+                cBodyEl.appendChild(cContainerEl);
 
         } else {
             (console.log("we have a problem"));
@@ -137,10 +140,7 @@ var getApiInfo = function(apiURL){
                 cardContainerEl.appendChild(footerEl);
                 cardBodyEl.appendChild(cardContainerEl);
 
-                var saving = new mySavedRecipes(data.id, data.image, data.spoonacularSourceUrl);
-                // mySavedRecipes["id"] = data.id;
-                // mySavedRecipes ["image"] = data.image;
-                // mySavedRecipes ["url"] = data.spoonacularSourceUrl;
+                var saving = new mySavedRecipes(data.id, data.image, data.spoonacularSourceUrl, data.title);
                 myRecipesList.push(saving);
 
             });
