@@ -1,7 +1,7 @@
 // arrays to hold the results from local storage and to put the user saved ids in local storage
 var recipeIdResults = [];
 var savedRecipeIDs = [];
-
+var savedCookbook = [];
 // array to hold the list of saved recipies
 var myRecipesList = [];
 
@@ -16,7 +16,59 @@ $(document).ready(function () {
             var recipeSummaryURL = "https://api.spoonacular.com/recipes/"+recipeIdResults[i]+"/information?apiKey="+apiKey
             getApiInfo(recipeSummaryURL);
         }
+        
 });
+
+$(document).ready(function(){
+    //Local Storage Recipie Details to display them in the my recipies section.
+        // if (localStorage.getItem("cookbook")===null){
+        //     return;
+        // } else 
+        if (localStorage.getItem("cookbook") != null){
+            var rList = localStorage.getItem("cookbook");
+            cBook = JSON.parse(rList);
+            savedCookbook = cBook;
+            
+            // localStorage.setItem("cookbook", JSON.stringify(cookbook));
+            showWhatILike(cBook);
+        }
+});
+
+var showWhatILike = function (cBook){
+    for(var i=0; i<cBook.length; i++){
+        var cBodyEl = document.getElementById("my-recipes");
+        var cContainerEl = document.createElement("div");
+        cContainerEl.classList.add("column", "is-4")
+
+        var cardRecipeEl = document.createElement("div");
+        cardRecipeEl.className = "card";
+
+        var cImg = document.createElement("img");
+        cImg.className = "is-rounded";
+        cImg.src = cBook[i].image;
+
+        var cTextEl = document.createElement("div");
+        cTextEl.textContent = cBook[i].title;
+
+        var footerEl = document.createElement("footer");
+        footerEl.className = "card-footer";
+
+        var viewBtnEl = document.createElement('a');
+        viewBtnEl.href = cBook[i].url;
+        viewBtnEl.target = "_blank";
+        viewBtnEl.className = "card-footer-item";
+        var delText = document.createTextNode("View");
+        viewBtnEl.appendChild(delText);
+        footerEl.append(viewBtnEl);
+
+        cardRecipeEl.appendChild(cImg);
+        cContainerEl.appendChild(cTextEl);
+        cContainerEl.appendChild(cImg);
+        cContainerEl.appendChild(footerEl);
+        cBodyEl.appendChild(cContainerEl);
+
+    }
+}
 
 // function to check if local storage is empty or not
 var checkLocalStorage = function(recipeId){
@@ -33,51 +85,57 @@ var checkLocalStorage = function(recipeId){
 
   // create a class to hold the objects needed
   class mySavedRecipes {
-    constructor(id, image, url) {
+    constructor(id, image, url,title) {
         this.id = id;
         this.image = image;
         this.url = url;
+        this.title = title;
     }
 }
 
 
 // function to run when the user clicks save
 var showMySavedRecipes = function (savedId){
-    console.log(savedId);
     // check to see if the recipe id matches with the clicked id from the card. If so  present it to the user in the my recipe section
     for (var i = 0; i<myRecipesList.length; i++){
-        console.log(myRecipesList[i].id);
-        if (myRecipesList[i].id === savedId){
-            console.log("it's a match");
+        if (myRecipesList[i].id == savedId){
             // TODO --- add image and link to the my list div.
-                // var cBodyEl = document.getElementById("my-recipes");
-                // var cContainerEl = document.createElement("div");
-                // cContainerEl.classList.add("column", "is-4")
+                var cBodyEl = document.getElementById("my-recipes");
+                var cContainerEl = document.createElement("div");
+                cContainerEl.classList.add("column", "is-4")
 
-                // var cardRecipeEl = document.createElement("div");
-                // cardRecipeEl.className = "card";
-                // var cImg = document.createElement("img");
-                // cImg.className = "is-rounded";
-                // cImg.src = myRecipesList[i].image;
+                var cardRecipeEl = document.createElement("div");
+                cardRecipeEl.className = "card";
 
-                // var footerEl = document.createElement("footer");
-                // footerEl.className = "card-footer";
+                var cImg = document.createElement("img");
+                cImg.className = "is-rounded";
+                cImg.src = myRecipesList[i].image;
 
-                // var viewBtnEl = document.createElement('a');
-                // viewBtnEl.href = myRecipesList[i].url;
-                // viewBtnEl.target = "_blank";
-                // saveBtnEl.classList.add("card-footer-item");
-                // viewBtnEl.className = "card-footer-item";
-                // var delText = document.createTextNode("View");
-                // viewBtnEl.appendChild(delText);
-                // footerEl.append(saveBtnEl);
-                // footerEl.append(viewBtnEl);
+                var cTextEl = document.createElement("div");
+                cTextEl.textContent = myRecipesList[i].title;
 
-                // cardRecipeEl.appendChild(cImg);
-                // cContainerEl.appendChild(cTextEl);
-                // cContainerEl.appendChild(cImg);
-                // cContainerEl.appendChild(footerEl);
-                // cBodyEl.appendChild(cContainerEl);
+                var footerEl = document.createElement("footer");
+                footerEl.className = "card-footer";
+
+                var viewBtnEl = document.createElement('a');
+                viewBtnEl.href = myRecipesList[i].url;
+                viewBtnEl.target = "_blank";
+                viewBtnEl.className = "card-footer-item";
+                var delText = document.createTextNode("View");
+                viewBtnEl.appendChild(delText);
+                footerEl.append(viewBtnEl);
+
+                cardRecipeEl.appendChild(cImg);
+                cContainerEl.appendChild(cTextEl);
+                cContainerEl.appendChild(cImg);
+                cContainerEl.appendChild(footerEl);
+                cBodyEl.appendChild(cContainerEl);
+
+
+                //Used to store data for info for recipes to local stoage to pull for a later time
+                var saving = new mySavedRecipes(myRecipesList[i].id, myRecipesList[i].image, myRecipesList[i].url, myRecipesList[i].title);
+                savedCookbook.push(saving);
+                localStorage.setItem("cookbook",JSON.stringify(savedCookbook));
 
         } else {
             (console.log("we have a problem"));
@@ -99,7 +157,6 @@ var getApiInfo = function(apiURL){
     fetch(apiURL).then(function(response){
         if(response.ok){
             response.json().then(function(data){
-                console.log(data);
 
                 var cardBodyEl = document.getElementById("my-results");
                 var cardContainerEl = document.createElement("div");
@@ -137,10 +194,7 @@ var getApiInfo = function(apiURL){
                 cardContainerEl.appendChild(footerEl);
                 cardBodyEl.appendChild(cardContainerEl);
 
-                var saving = new mySavedRecipes(data.id, data.image, data.spoonacularSourceUrl);
-                // mySavedRecipes["id"] = data.id;
-                // mySavedRecipes ["image"] = data.image;
-                // mySavedRecipes ["url"] = data.spoonacularSourceUrl;
+                var saving = new mySavedRecipes(data.id, data.image, data.spoonacularSourceUrl, data.title);
                 myRecipesList.push(saving);
 
             });

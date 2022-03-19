@@ -8,9 +8,6 @@
     background-position: 40%;
     z-index: 9999;
 }
-.is-fullheight-100vh{
-	height: 100vh;
-}
 
 body {
 	background-color: white;

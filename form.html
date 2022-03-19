@@ -35,13 +35,13 @@
     <section id="form-page" class="columns is-flex-direction-column has-text-centered">
         <div>
             <!--Div for Allgery Selection-->
-            <h1>Do You Have Allergies</h1>
+            <h1 class="pt-3">Do You Have Allergies</h1>
 
             <!--Buttons for users to select if they have allergies or not-->
             <button class="button is-success yes-allergies-btn" id="yes-allergies-btn">Yes</button>
             <button class="button is-danger no-allergies-btn" id="no-allergies-btn">No</button>
             <!--Div is hidden unless user selects "yes"-->
-            <div class="container" id="allergies">
+            <div class="container is-font-family-primary pt-2" id="allergies">
                 <h3 class="Dairy">Dairy</h3>
                 <h3>Egg</h3>
                 <h3>Gluten</h3>
@@ -60,12 +60,12 @@
 
             <div>
                 <!--Div for Diet Selection-->
-                <h1>Do You Have Any Dietary Restrictions</h1>
+                <h1 class="pt-3">Do You Have Any Dietary Restrictions</h1>
                 <!--Buttons for users to select if they have diet restrictions or not-->
                 <button class="button is-success yes-diets-btn" id="yes-diets-btn">Yes</button>
                 <button class="button is-danger no-diets-btn" id="no-diets-btn">No</button>
 
-                <div class="column" id="diets">
+                <div class="container pt-2" id="diets">
 
                     <h3>Paleo</h3>
                     <h3>Pescaterian</h3>
@@ -80,7 +80,7 @@
             <div id="no-eat">
                 <!-- start of cuisine section -->
                 <h2>Tell Us What You Don't Want!</h2>
-                <div id="cusines-section">
+                <div class="container pt-2" id="cusines-section">
                     <h3>American</h3>
                     <h3>African</h3>
                     <h3>British</h3>
@@ -109,13 +109,19 @@
                 </div>
 
             </div>
-            <button class="button is-warning is-light is-link " id="lets-eat">
+            
+            <button class="button is-warning is-light is-link" id="lets-eat" onclick="hide()">
                 Submit!
-
             </button>
+            <a href="./results.html" class="button is-danger is-light is-link" id="results" >
+               Click to See Your Results!
+            </a>
+            
+            
             </div>
+        
     </section>
-
+  
     <!--Footer-->
     <footer class="footer has-background-warning">
         <h5>Go Forth & Eat Good. </h5>

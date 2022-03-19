@@ -46,6 +46,11 @@ $(document).ready(function () {
     $("#diets").hide();
 });
 
+//hides results button on page load
+$(document).ready(function () {
+    $("#results").hide();
+});
+
 // function to create the modal for an error
 var createModal = function (error){
     $(".modal").addClass("is-active");
@@ -186,8 +191,7 @@ $("#lets-eat").click(function(){
     // if no allergy is selected run the API for only the diets and cusines selected
     if (noAllergySelected && !noDietSelected){
         getApiInfo(selectedDietAndCusineApiURL);
-        console.log("true allergies");
-        console.log(noAllergySelected, noDietSelected)
+    
     // if no diet is selected run the API for only the allergies and cusines selected    
     } else if (noDietSelected && !noAllergySelected){
         getApiInfo(selectedAllergyandCusineApiURL);
@@ -204,6 +208,16 @@ $("#lets-eat").click(function(){
         console.log("get them all")
     }
 });
+
+function hide(){
+
+    var button=document.getElementById('lets-eat');
+    button.style.display="none";
+    
+    var a=document.getElementById('results');
+    a.style.display="block";
+    
+    }
 
 
 // function to fetch the data from the api
