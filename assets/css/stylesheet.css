@@ -1,16 +1,10 @@
 .hero{
-    padding: 130px 300px;
+    padding: 130px 200px;
     display: flex;
     flex-wrap: wrap;
     background-image: url("../images/heroimage.jpg");
     background-size: cover;
     background-attachment: fixed;
-    background-position: 40%;
+    background-position: 30%;
     z-index: 9999;
-}
-/*
-is cheat to make footer beahve sticky with bulma 
-*/
-.is-fullheight-100vh{
-	height: 100vh;
 }
