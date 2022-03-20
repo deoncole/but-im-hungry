@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./assets/images/butimhungryicon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/css/form-stylesheet.css">
+    <title>But I'm Hungry</title>
+</head>
+
+<body>
+    <!--Header Image and Layout-->
+    <!--Main Navigation Section-->
+    <nav class="navbar is-warning is-fixed-top" role="navigation">
+        <div class="navbar-start">
+            <a class="navbar-item" href="./index.html">But I'm Hungry</a>
+        </div>
+
+        <a class="navbar-item" href="./index.html#intro">Introduction</a>
+        <a class="navbar-item" href="./index.html#how-to">How This Works</a>
+        <a class="navbar-item" href="./index.html#start-here">Get Started!</a>
+    </nav>
+    <!--Navigation End-->
+
+    <div class="hero">
+        <!--Styled by Stylesheet-->
+    </div>
+    <!--Header End-->
+
+    <!--Main Sections-->
+    <!--"is-flex-direction-column is-fullheight-100vh" Makes footer behave as a sticky footer-->
+    <section id="form-page" class="columns is-flex-direction-column has-text-centered">
+        <div>
+            <!--Div for Allgery Selection-->
+            <h1 class="pt-3">Do You Have Allergies</h1>
+
+            <!--Buttons for users to select if they have allergies or not-->
+            <button class="button is-success yes-allergies-btn" id="yes-allergies-btn">Yes</button>
+            <button class="button is-danger no-allergies-btn" id="no-allergies-btn">No</button>
+            <!--Div is hidden unless user selects "yes"-->
+            <div class="container is-font-family-primary pt-2" id="allergies">
+                <h3 class="Dairy">Dairy</h3>
+                <h3>Egg</h3>
+                <h3>Gluten</h3>
+                <h3>Grain</h3>
+                <h3>Peanut</h3>
+                <h3>Seafood</h3>
+                <h3>Sesame</h3>
+                <h3>Shellfish</h3>
+                <h3>Soy</h3>
+                <h3>Sulfite</h3>
+                <h3>Tree Nut</h3>
+                <h3>Wheat</h3>
+            </div>
+            <!--Allergy Selection End-->
+
+
+            <div>
+                <!--Div for Diet Selection-->
+                <h1 class="pt-3">Do You Have Any Dietary Restrictions</h1>
+                <!--Buttons for users to select if they have diet restrictions or not-->
+                <button class="button is-success yes-diets-btn" id="yes-diets-btn">Yes</button>
+                <button class="button is-danger no-diets-btn" id="no-diets-btn">No</button>
+
+                <div class="container pt-2" id="diets">
+
+                    <h3>Paleo</h3>
+                    <h3>Pescaterian</h3>
+                    <h3>Vegan</h3>
+                    <h3>Vegetrian</h3>
+                    <h3>Ketogenic</h3>
+                    <h3>Gluten Free</h3>
+                </div>
+
+            </div>
+
+            <div id="no-eat">
+                <!-- start of cuisine section -->
+                <h2>Tell Us What You Don't Want!</h2>
+                <div class="container pt-2" id="cusines-section">
+                    <h3>American</h3>
+                    <h3>African</h3>
+                    <h3>British</h3>
+                    <h3>Cajun</h3>
+                    <h3>Caribbean</h3>
+                    <h3>Chinese</h3>
+                    <h3>Eastern European</h3>
+                    <h3>French</h3>
+                    <h3>German</h3>
+                    <h3>Greek</h3>
+                    <h3>Indian</h3>
+                    <h3>Irish</h3>
+                    <h3>Italian</h3>
+                    <h3>Japanese</h3>
+                    <h3>Jewish</h3>
+                    <h3>Korean</h3>
+                    <h3>Latin American</h3>
+                    <h3>Mediterranean</h3>
+                    <h3>Mexican</h3>
+                    <h3>Middle Eastern</h3>
+                    <h3>Nordic</h3>
+                    <h3>Southern</h3>
+                    <h3>Spanish</h3>
+                    <h3>Thai</h3>
+                    <h3>Vietamese</h3>
+                </div>
+
+            </div>
+            
+            <button class="button is-warning is-light is-link" id="lets-eat" onclick="hide()">
+                Submit!
+            </button>
+            <a href="./results.html" class="button is-danger is-light is-link" id="results" >
+               Click to See Your Results!
+            </a>
+            
+            
+            </div>
+        
+    </section>
+  
+    <!--Footer-->
+    <footer class="footer has-background-warning">
+        <h5>Go Forth & Eat Good. </h5>
+        <div>
+            &copy; 2021 But I'm Hungry
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-ui-touch-punch@0.2.3/jquery.ui.touch-punch.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+</body>
+
+</html>
